@@ -4,6 +4,7 @@
 			"com.apple.springboard",
 			"com.apple.Music",
 			"com.spotify.client",
+			"com.pandora"
 		);
 	};
 }

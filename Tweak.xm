@@ -230,6 +230,29 @@ void reloadPrefs() {
 %end
 %end
 
+%group Pandora
+
+%hook PMNowPlayingPhoneTrackCard
+%property (strong) UIImageView *hazmatMask;
+%property (strong) UIImageView *hazmatOverlay;
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = %orig;
+    [HZPMaskStorage addObject:self];
+    [HZPOverlayStorage addObject:self];
+    addMask(self.albumCoverViewContainer, self);
+    //addOverlay(self.albumCoverViewContainer, YES);
+    return self;
+}
+
+- (void)setFrame:(CGRect)frame {
+    updateMask(self.albumCoverViewContainer, self.albumCoverViewContainer.frame);
+    //updateOverlay(self, self.frame);
+    return %orig;
+}
+%end
+
+%end
+
 //--------------------------------------------------------------------------------------------------------------------------
 %ctor {
     NSString *bundleID = NSBundle.mainBundle.bundleIdentifier;
@@ -242,6 +265,9 @@ void reloadPrefs() {
     }
     else if ([bundleID isEqualToString:@"com.spotify.client"]) {
         %init(Spotify);
+        reloadPrefs();
+    } else if ([bundleID isEqualToString:@"com.pandora"]) {
+        %init(Pandora);
         reloadPrefs();
     }
     

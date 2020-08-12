@@ -57,3 +57,10 @@
 @property SPTNowPlayingCoverArtImageView *coverArtImageView;
 - (void)viewDidLoad;
 @end
+
+@interface PMNowPlayingPhoneTrackCard : UIView <HZPMask, HZPOverlay>
+@property UIView<HZPMask, HZPOverlay> *albumCoverViewContainer;
+- (instancetype)initWithFrame:(CGRect)frame;
+- (void)setFrame:(CGRect)frame;
+@end
+

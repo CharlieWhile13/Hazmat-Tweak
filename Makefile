@@ -1,5 +1,5 @@
 
-ARCHS = arm64 arm64e
+export ARCHS = arm64 arm64e
 TARGET = iphone:clang:13.3:13.0
 include $(THEOS)/makefiles/common.mk
 
@@ -12,3 +12,5 @@ include $(THEOS_MAKE_PATH)/tweak.mk
 
 SUBPROJECTS += Preferences
 include $(THEOS_MAKE_PATH)/aggregate.mk
+
+export GO_EASY_ON_ME = 1
